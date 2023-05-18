@@ -25,7 +25,8 @@ stages{
             parallel{
                 stage ("Deploy to Staging"){
                     steps {
-                        deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://localhost:8080/')], contextPath: null, war: '**/*.war'
+                         bat 'xcopy target\\loadbalance.war "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps" /Y'
+                       // deploy adapters: [tomcat9(credentialsId: 'tomcat', path: 'C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps', url: 'http://localhost:8080/')], contextPath: null, war: '**/*.war'
                         //sh "scp -v -o StrictHostKeyChecking=no **/*.war root@${params.staging_server}:/opt/tomcat/webapps/"
                     }
                 }
